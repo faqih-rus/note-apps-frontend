@@ -22,10 +22,12 @@ const NoteDetailPage = () => {
     variables: { id: noteId },
   });
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
+  if (loading) return <Text textAlign="center" mt={4}>Loading...</Text>;
+  if (error) return <Text textAlign="center" mt={4}>Error: {error.message}</Text>;
 
-  if (!data.getNote) {
+  const note = data?.getNote;
+
+  if (!note) {
     return <Text textAlign="center" mt={4}>Note not found</Text>;
   }
 
@@ -47,7 +49,7 @@ const NoteDetailPage = () => {
           w="full"
         >
           <Flex justifyContent="space-between" alignItems="center" mb={6}>
-            <Heading color={headingColor}>{data.getNote.title}</Heading>
+            <Heading color={headingColor}>{note.title}</Heading>
             <Button
               colorScheme="blue"
               onClick={() => router.push('/notes')}
@@ -57,9 +59,9 @@ const NoteDetailPage = () => {
             </Button>
           </Flex>
           <NoteDetail
-            title={data.getNote.title}
-            content={data.getNote.content}
-            created_at={data.getNote.created_at}
+            title={note.title}
+            body={note.body}
+            createdAt={note.createdAt}
           />
         </Box>
       </Container>

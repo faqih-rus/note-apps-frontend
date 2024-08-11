@@ -36,7 +36,7 @@ const NoteList = ({ notes }) => {
             key={note.id}
             id={note.id}
             title={note.title}
-            content={note.content}
+            body={note.body}
             createdAt={formattedDate}
             onDelete={() => handleDelete(note.id)}
           />

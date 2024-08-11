@@ -1,13 +1,15 @@
 import { useState } from "react";
 import { Box, Button, Input, Textarea, VStack } from "@chakra-ui/react";
+import { useRouter } from 'next/navigation';
 
-const NoteForm = ({ onSubmit, initialData = { title: '', content: '' } }) => {
+const NoteForm = ({ onSubmit, initialData = { title: '', body: '' } }) => {
   const [title, setTitle] = useState(initialData.title);
-  const [content, setContent] = useState(initialData.content);
+  const [body, setBody] = useState(initialData.body);
+  const router = useRouter();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit({ title, content });
+    onSubmit({ title, body });
   };
 
   return (
@@ -21,9 +23,9 @@ const NoteForm = ({ onSubmit, initialData = { title: '', content: '' } }) => {
           focusBorderColor="teal.500"
         />
         <Textarea
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-          placeholder="Content"
+          value={body}
+          onChange={(e) => setBody(e.target.value)}
+          placeholder="Deskripsi"
           isRequired
           focusBorderColor="teal.500"
           minH="200px"
@@ -37,6 +39,17 @@ const NoteForm = ({ onSubmit, initialData = { title: '', content: '' } }) => {
           boxShadow="md"
         >
           Save
+        </Button>
+        <Button
+          colorScheme="teal"
+          onClick={() => router.push('/')}
+          size="lg"
+          w="full"
+          borderRadius="full"
+          boxShadow="md"
+          mt={2}
+        >
+          Kembali
         </Button>
       </VStack>
     </Box>

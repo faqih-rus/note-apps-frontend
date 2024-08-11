@@ -24,8 +24,8 @@ const EditNotePage = () => {
       variables: {
         id,
         title: note.title,
-        content: note.content,
-      }
+        body: note.body,
+      },
     });
   };
 
@@ -35,7 +35,7 @@ const EditNotePage = () => {
   return (
     <Box p={4}>
       <Heading mb={4}>Ubah Catatan</Heading>
-      <NoteForm onSubmit={handleSubmit} initialData={data.getNote} />
+      <NoteForm onSubmit={handleSubmit} initialData={data?.getNote} />
     </Box>
   );
 };

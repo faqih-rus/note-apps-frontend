@@ -6,8 +6,8 @@ export const GET_NOTES = gql`
     getNotes {
       id
       title
-      content
-      created_at
+      body
+      createdAt 
     }
   }
 `;
@@ -17,8 +17,8 @@ export const GET_NOTE_BY_ID = gql`
     getNote(id: $id) {
       id
       title
-      content
-      created_at
+      body
+      createdAt
     }
   }
 `;

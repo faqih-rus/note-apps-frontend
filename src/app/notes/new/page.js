@@ -1,18 +1,20 @@
 'use client';
 
-import { Box, Heading, Button, Flex, useColorModeValue, Container } from "@chakra-ui/react";
+import { Box, Heading, Flex, useColorModeValue, Container } from "@chakra-ui/react";
 import NoteForm from "../../components/NoteForm";
 import { useMutation } from '@apollo/client';
 import { ADD_NOTE } from '../../graphql/mutations';
 import { GET_NOTES } from '../../graphql/queries';
 import { useRouter } from 'next/navigation';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const NewNotePage = () => {
   const router = useRouter();
   const [addNote, { loading, error }] = useMutation(ADD_NOTE, {
-    refetchQueries: [{ query: GET_NOTES }],  // Menambahkan refetchQueries untuk memastikan data diperbarui
+    refetchQueries: [{ query: GET_NOTES }],
     onCompleted: (data) => {
-      router.push(`/notes/${data.addNote.id}`);  // Redirect ke halaman detail note setelah berhasil menambahkan
+      router.push(`/notes/${data.addNote.id}`); 
     },
   });
 
@@ -26,15 +28,12 @@ const NewNotePage = () => {
   const handleAddNote = async (note) => {
     try {
       await addNote({
-        variables: { title: note.title, content: note.content },
+        variables: { title: note.title, body: note.body },
       });
     } catch (err) {
       console.error("Error adding note:", err.message);
     }
   };
-
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
 
   return (
     <Box
@@ -45,6 +44,7 @@ const NewNotePage = () => {
       alignItems="center"
       justifyContent="center"
     >
+      <ToastContainer /> 
       <Container maxW="lg">
         <Box
           bg={boxBg}
@@ -55,13 +55,6 @@ const NewNotePage = () => {
         >
           <Flex justifyContent="space-between" alignItems="center" mb={6}>
             <Heading color={headingColor}>Tambahkan Catatan Baru</Heading>
-            <Button
-              colorScheme="blue"
-              onClick={() => router.push('/notes')}
-              size="sm"
-            >
-              Kembali
-            </Button>
           </Flex>
           <NoteForm onSubmit={handleAddNote} />
         </Box>

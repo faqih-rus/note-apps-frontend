@@ -6,11 +6,11 @@ import { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { UPDATE_NOTE, GET_NOTES } from '../graphql/mutations';
 
-const NoteItem = ({ id, title, createdAt, content, onDelete }) => {
+const NoteItem = ({ id, title, createdAt, body, onDelete }) => {
   const router = useRouter();
   const [isEditing, setIsEditing] = useState(false);
   const [updatedTitle, setUpdatedTitle] = useState(title);
-  const [updatedContent, setUpdatedContent] = useState(content);
+  const [updatedContent, setUpdatedContent] = useState(body);
 
   const [updateNote] = useMutation(UPDATE_NOTE, {
     refetchQueries: [{ query: GET_NOTES }],
@@ -19,7 +19,7 @@ const NoteItem = ({ id, title, createdAt, content, onDelete }) => {
   const handleEdit = async () => {
     try {
       await updateNote({
-        variables: { id, title: updatedTitle, content: updatedContent },
+        variables: { id, title: updatedTitle, body: updatedContent },
       });
       setIsEditing(false);
     } catch (error) {
@@ -65,8 +65,10 @@ const NoteItem = ({ id, title, createdAt, content, onDelete }) => {
       ) : (
         <>
           <Text fontWeight="bold">{title}</Text>
-          <Text fontSize="sm" color="gray.500">{createdAt}</Text>
-          <Text mt={2}>{content}</Text>
+          <Text fontSize="sm" color="gray.500">
+            {createdAt ? createdAt : 'No date'}
+            </Text>
+          <Text mt={2}>{body}</Text>
           <Button
             colorScheme="red"
             mt={2}

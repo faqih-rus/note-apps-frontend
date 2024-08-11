@@ -64,6 +64,8 @@ const NotesPage = () => {
     );
   }
 
+  const sortedNotes = [...data.getNotes].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
   return (
     <Box
       minH="100vh"
@@ -85,12 +87,7 @@ const NotesPage = () => {
           Kembali ke Homepage
         </Button>
         <Heading mb={6} color={headingColor}>My Notes</Heading>
-        <NoteList notes={data.getNotes.map(note => ({
-          id: note.id,
-          title: note.title,
-          content: note.content,
-          createdAt: note.created_at
-        }))} />
+        <NoteList notes={sortedNotes} />
       </Box>
     </Box>
   );
