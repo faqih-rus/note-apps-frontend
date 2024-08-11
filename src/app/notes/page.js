@@ -86,7 +86,11 @@ const NotesPage = () => {
         <Button mb={4} colorScheme="teal" onClick={() => router.push('/')}>
           Kembali ke Homepage
         </Button>
-        <Heading mb={6} color={headingColor}>My Notes</Heading>
+        <Heading mb={6} color={headingColor}>
+          
+          Catatan Saya
+
+          </Heading>
         <NoteList notes={sortedNotes} />
       </Box>
     </Box>
