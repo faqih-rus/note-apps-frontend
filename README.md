@@ -1,6 +1,6 @@
 # Notes Application
 
-![Notes App](https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vecteezy.com%2Fpng%2F25006367-3d-illustration-icon-of-purple-notes-and-pencil-for-ui-ux-web-mobile-apps-social-media-ads-design&psig=AOvVaw0CjXzxNmgGTWxkoS3_hYSi&ust=1723473440653000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCIia1YuV7YcDFQAAAAAdAAAAABAE)
+![Notes App](https://drive.google.com/file/d/1H_k3MjZczrFCkZ3fe38V4-nOYiEMWUtP/view?usp=sharing)
 
 ## Overview
 
